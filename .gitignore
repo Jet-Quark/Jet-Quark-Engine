@@ -1,3 +1,11 @@
+# Executables
+*
+!*.*
+!*/
+
+# Build directory
+build/
+
 # Prerequisites
 *.d
 

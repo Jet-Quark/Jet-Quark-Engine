@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -shared -Wl,-soname,libJetQuark.so -o ../bin/libJetQuark.so CMakeFiles/JetQuark.dir/src/Application.cpp.o 
