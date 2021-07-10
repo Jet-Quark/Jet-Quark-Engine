@@ -22,11 +22,11 @@
 
 class SandboxApp : public JtQ::Application {
 public:
-   
+
    SandboxApp()
    {}
 
-   ~SandboxApp()
+   virtual ~SandboxApp() override
    {}
 };
 

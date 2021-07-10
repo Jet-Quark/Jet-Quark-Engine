@@ -25,7 +25,7 @@ namespace JtQ {
    class Application {
    public:
       Application();
-      ~Application();
+      virtual ~Application();
 
       virtual void run();
    };

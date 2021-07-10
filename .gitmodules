@@ -1,0 +1,3 @@
+[submodule "JetQuark/dependencies/spdlog"]
+	path = JetQuark/dependencies/spdlog
+	url = git@github.com:Jet-Quark/spdlog.git

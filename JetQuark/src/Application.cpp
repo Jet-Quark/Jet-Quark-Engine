@@ -20,6 +20,8 @@
 
 #include <iostream>
 
+#include "spdlog/spdlog.h"
+
 #include "Application.hpp"
 
 namespace JtQ {
@@ -32,7 +34,6 @@ namespace JtQ {
 
    void Application::run()
    {
-      std::cout << "Welcome to Jet Quark Engine!" << std::endl;
-      std::cin.get();
+      spdlog::info("spdlog linked properly");
    }
 }
