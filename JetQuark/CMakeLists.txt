@@ -6,7 +6,7 @@ set(JQ_DEPENCENCIES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dependencies")
 
 add_subdirectory("${JQ_DEPENCENCIES_DIR}/spdlog")
 
-add_library(JetQuark SHARED src/Application.cpp)
+add_library(JetQuark SHARED src/Application.cpp src/Log.cpp)
 
 target_link_libraries(JetQuark PUBLIC spdlog_header_only)
 

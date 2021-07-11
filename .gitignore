@@ -2,6 +2,9 @@
 # Build directory
 build/
 
+# CCLS files
+.ccls-cache/
+
 # Prerequisites
 *.d
 

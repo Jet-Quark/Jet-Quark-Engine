@@ -20,9 +20,9 @@
 
 #include <iostream>
 
-#include "spdlog/spdlog.h"
 
 #include "Application.hpp"
+#include "Log.hpp"
 
 namespace JtQ {
 
@@ -34,6 +34,11 @@ namespace JtQ {
 
    void Application::run()
    {
-      spdlog::info("spdlog linked properly");
+      LogManager::init();
+      Logger& JtQLogger = LogManager::getJtQLogger();
+      Logger& appLogger = LogManager::getAppLogger();
+
+      JtQLogger.info("Hello, JtQLogger!");
+      appLogger.warn("Hello, AppLogger!");
    }
 }

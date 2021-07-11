@@ -1,3 +1,4 @@
+
 /**
  * Jet Quark, a game engine.
  * Copyright (C) 2021  Mehdi Nasef
@@ -18,10 +19,41 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 #include "Log.hpp"
-#include "Application.hpp"
 
-//* Entry point ***************************************************************
-#include "entryPoint.hpp"
-//*****************************************************************************
+namespace JtQ
+{
+
+Logger::Logger(const char* name):
+   mSpdLogger_sptr(spdlog::stdout_color_mt(name))
+{}
+
+Logger::Logger(Logger&& temp) noexcept:
+   mSpdLogger_sptr(temp.mSpdLogger_sptr)
+{}
+
+Logger& Logger::operator=(Logger&& temp) noexcept
+{
+   this->mSpdLogger_sptr = temp.mSpdLogger_sptr;
+   return *this;
+}
+
+LogManager LogManager::singleInstance;
+bool LogManager::initialized = false;
+
+bool LogManager::init(const char* logFile)
+{
+   // TODO: implement file logging
+   assert(logFile == nullptr);
+
+   spdlog::set_pattern("%^%H:%M:%S:%e [%n::%L]%$ %v");
+
+   singleInstance.JtQLogger = std::move(Logger("JtQ"));
+   singleInstance.appLogger = std::move(Logger("App"));
+
+   initialized = true;
+
+   return true;
+}
+
+} // namespace JtQ
