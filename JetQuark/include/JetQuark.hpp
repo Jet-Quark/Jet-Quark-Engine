@@ -18,6 +18,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
+/**
+ * To be included by the client applicaton.
+ */
 
 #include "Log.hpp"
 #include "Application.hpp"

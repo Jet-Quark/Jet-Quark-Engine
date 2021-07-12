@@ -26,12 +26,6 @@
 
 namespace JtQ {
 
-   Application::Application()
-   {}
-
-   Application::~Application()
-   {}
-
    void Application::run()
    {
       LogManager::init();

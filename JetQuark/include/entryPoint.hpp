@@ -20,6 +20,8 @@
 
 #pragma once
 
+// Will be included in the client application.
+
 #include "Application.hpp"
 
 int main(int argc, const char* argv[])

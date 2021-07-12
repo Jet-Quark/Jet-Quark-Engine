@@ -24,12 +24,29 @@ namespace JtQ {
 
    class Application {
    public:
-      Application();
-      virtual ~Application();
 
+      /**
+       * Default constructor for Application.
+       */
+      Application() = default;
+
+      /**
+       * Default destructor for Application.
+       * it must be overriden by client application.
+       */
+      virtual ~Application() = default;
+
+      /**
+       * Runs applicaton's code.
+       * TODO: (It's temporary)
+       */
       virtual void run();
    };
 
-   // Needs to be implimented on the application side.
+   /**
+    * Creates an Application and returns a pointer to it.
+    * It must be implemented by the client application.
+    * @return A pointer to the created Application.
+    */
    Application* createApplication();
 }

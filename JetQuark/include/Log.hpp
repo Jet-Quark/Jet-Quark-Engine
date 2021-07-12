@@ -33,40 +33,74 @@ namespace JtQ
 class Logger {
 public:
 
+   // LogManager manages Loggers.
    friend class LogManager;
 
+   /**
+    * Loggers cannot be copied.
+    */
    Logger(const Logger&) = delete;
 
+   /**
+    * Log trace information.
+    * @param fmt  Format string.
+    * @param args Formatting args.
+    */
    template<typename FormatString, typename... Args>
    inline void trace(const FormatString& fmt, Args&&... args)
    {
       mSpdLogger_sptr->trace(fmt, std::forward<Args>(args)...);
    }
 
+   /**
+    * Log debug information.
+    * @param fmt  Format string.
+    * @param args Formatting args.
+    */
    template<typename FormatString, typename... Args>
    inline void debug(const FormatString& fmt, Args&&... args)
    {
       mSpdLogger_sptr->debug(fmt, std::forward<Args>(args)...);
    }
 
+   /**
+    * Log information.
+    * @param fmt  Format string.
+    * @param args Formatting args.
+    */
    template<typename FormatString, typename... Args>
    inline void info(const FormatString& fmt, Args&&... args)
    {
       mSpdLogger_sptr->info(fmt, std::forward<Args>(args)...);
    }
 
+   /**
+    * Log warnnings.
+    * @param fmt  Format string.
+    * @param args Formatting args.
+    */
    template<typename FormatString, typename... Args>
    inline void warn(const FormatString& fmt, Args&&... args)
    {
       mSpdLogger_sptr->warn(fmt, std::forward<Args>(args)...);
    }
 
+   /**
+    * Log errors.
+    * @param fmt  Format string.
+    * @param args Formatting args.
+    */
    template<typename FormatString, typename... Args>
    inline void error(const FormatString& fmt, Args&&... args)
    {
       mSpdLogger_sptr->error(fmt, std::forward<Args>(args)...);
    }
 
+   /**
+    * Log critical information.
+    * @param fmt  Format string.
+    * @param args Formatting args.
+    */
    template<typename FormatString, typename... Args>
    inline void critical(const FormatString& fmt, Args&&... args)
    {
@@ -74,15 +108,22 @@ public:
    }
 
 private:
-
+   // a pointer to a spdlog logger.
    std::shared_ptr<spdlog::logger> mSpdLogger_sptr;
 
+   // Default constructor creates an uninitialized logger.
    Logger() = default;
+
+   // Creates a Logger with the provided name.
    explicit Logger(const char* name);
+
+   // Move constructor for Logger.
    Logger(Logger&& temp) noexcept;
 
+   // Move assignment operator.
    Logger& operator=(Logger&&) noexcept;
 
+   // The destructor is the default since we have a shared ptr to spdlog logger
    ~Logger() = default;
 };
 
@@ -90,20 +131,42 @@ private:
 class LogManager {
 public:
 
+   /**
+    * LogManager is a singleton thus, it cannot be copied.
+    */
+   LogManager(const LogManager&) = delete;
+
+   /**
+    * Initializes logging system (LogManager).
+    * @param  logFile A log file path to log to a file instead of console.
+    * @return         true if initialized correctly, false otherwise.
+    */
    static bool init(const char* logFile = nullptr);
 
+   /**
+    * Gets the singleton instance of LogManager.
+    * @return A reference to singleton Instance of LogManager.
+    */
    static inline LogManager& getSingleInstance()
    {
       assert(initialized);
       return singleInstance;
    }
 
+   /**
+    * Gets application's Logger.
+    * @return A reference to application's Logger.
+    */
    static inline Logger& getAppLogger()
    {
       assert(initialized);
       return singleInstance.appLogger;
    }
 
+   /**
+    * Gets Jet Quark Engine's Logger.
+    * @return A reference to engine's Logger.
+    */
    static inline Logger& getJtQLogger()
    {
       assert(initialized);
@@ -118,10 +181,11 @@ private:
    Logger JtQLogger;
    Logger appLogger;
 
+   // Creates an uninitialized LogManager.
    LogManager() = default;
-   ~LogManager() = default;
 
-   LogManager(const LogManager&) = delete;
+   // Default since no freeing is required.
+   ~LogManager() = default;
 };
 
 } // namespace JtQ
