@@ -46,6 +46,7 @@ bool LogManager::init(const char* logFile)
    // TODO: implement file logging
    assert(logFile == nullptr);
 
+   spdlog::set_level(spdlog::level::trace);
    spdlog::set_pattern("%^%H:%M:%S:%e [%n::%L]%$ %v");
 
    singleInstance.JtQLogger = std::move(Logger("JtQ"));

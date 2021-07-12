@@ -27,6 +27,22 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
+#define JTQ_LOG_LEVEL_TRACE      0
+#define JTQ_LOG_LEVEL_DEBUG      1
+#define JTQ_LOG_LEVEL_INFO       2
+#define JTQ_LOG_LEVEL_WARN       3
+#define JTQ_LOG_LEVEL_ERROR      4
+#define JTQ_LOG_LEVEL_CRITICAL   5
+#define JTQ_LOG_LEVEL_OFF        6
+
+#ifndef JTQ_ENG_ACTIVE_LOG_LEVEL
+   #define JTQ_ENG_ACTIVE_LOG_LEVEL JTQ_LOG_LEVEL_INFO
+#endif
+
+#ifndef JTQ_APP_ACTIVE_LOG_LEVEL
+   #define JTQ_APP_ACTIVE_LOG_LEVEL JTQ_LOG_LEVEL_INFO
+#endif
+
 namespace JtQ
 {
 
@@ -189,3 +205,119 @@ private:
 };
 
 } // namespace JtQ
+
+///////////////////////////////////////////////////////////////////////////////
+// Application logging macros /////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+#if JTQ_APP_ACTIVE_LOG_LEVEL == JTQ_LOG_LEVEL_TRACE
+
+   #define JTQ_APP_TRACE(fmt, ...) \
+      JtQ::LogManager::getAppLogger().trace(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+   #define JTQ_APP_TRACE(fmt, ...)
+#endif
+
+#if JTQ_APP_ACTIVE_LOG_LEVEL <= JTQ_LOG_LEVEL_DEBUG
+
+   #define JTQ_APP_DEBUG(fmt, ...) \
+      JtQ::LogManager::getAppLogger().debug(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+      #define JTQ_APP_DEBUG(fmt, ...)
+#endif
+
+#if JTQ_APP_ACTIVE_LOG_LEVEL <= JTQ_LOG_LEVEL_INFO
+
+   #define JTQ_APP_INFO(fmt, ...) \
+      JtQ::LogManager::getAppLogger().info(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+   #define JTQ_APP_INFO(fmt, ...)
+#endif
+
+#if JTQ_APP_ACTIVE_LOG_LEVEL <= JTQ_LOG_LEVEL_WARN
+
+   #define JTQ_APP_WARN(fmt, ...) \
+      JtQ::LogManager::getAppLogger().warn(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+   #define JTQ_APP_WARN(fmt, ...)
+#endif
+
+#if JTQ_APP_ACTIVE_LOG_LEVEL <= JTQ_LOG_LEVEL_ERROR
+
+   #define JTQ_APP_ERROR(fmt, ...) \
+      JtQ::LogManager::getAppLogger().error(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+   #define JTQ_APP_ERROR(fmt, ...)
+#endif
+
+#if JTQ_APP_ACTIVE_LOG_LEVEL <= JTQ_LOG_LEVEL_CRITICAL
+
+   #define JTQ_APP_CRITICAL(fmt, ...) \
+      JtQ::LogManager::getAppLogger().critical(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+   #define JTQ_APP_CRITICAL(fmt, ...)
+#endif
+
+///////////////////////////////////////////////////////////////////////////////
+// Engine logging macros //////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+#if JTQ_ENG_ACTIVE_LOG_LEVEL == JTQ_LOG_LEVEL_TRACE
+
+   #define JTQ_ENG_TRACE(fmt, ...) \
+      JtQ::LogManager::getJtQLogger().trace(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+   #define JTQ_ENG_TRACE(fmt, ...)
+#endif
+
+#if JTQ_ENG_ACTIVE_LOG_LEVEL <= JTQ_LOG_LEVEL_DEBUG
+
+   #define JTQ_ENG_DEBUG(fmt, ...) \
+      JtQ::LogManager::getJtQLogger().debug(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+      #define JTQ_ENG_DEBUG(fmt, ...)
+#endif
+
+#if JTQ_ENG_ACTIVE_LOG_LEVEL <= JTQ_LOG_LEVEL_INFO
+
+   #define JTQ_ENG_INFO(fmt, ...) \
+      JtQ::LogManager::getJtQLogger().info(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+   #define JTQ_ENG_INFO(fmt, ...)
+#endif
+
+#if JTQ_ENG_ACTIVE_LOG_LEVEL <= JTQ_LOG_LEVEL_WARN
+
+   #define JTQ_ENG_WARN(fmt, ...) \
+      JtQ::LogManager::getJtQLogger().warn(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+   #define JTQ_ENG_WARN(fmt, ...)
+#endif
+
+#if JTQ_ENG_ACTIVE_LOG_LEVEL <= JTQ_LOG_LEVEL_ERROR
+
+   #define JTQ_ENG_ERROR(fmt, ...) \
+      JtQ::LogManager::getJtQLogger().error(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+   #define JTQ_ENG_ERROR(fmt, ...)
+#endif
+
+#if JTQ_ENG_ACTIVE_LOG_LEVEL <= JTQ_LOG_LEVEL_CRITICAL
+
+   #define JTQ_ENG_CRITICAL(fmt, ...) \
+      JtQ::LogManager::getJtQLogger().critical(fmt __VA_OPT__(,) __VA_ARGS__)
+
+#else
+   #define JTQ_ENG_CRITICAL(fmt, ...)
+#endif

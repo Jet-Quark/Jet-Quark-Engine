@@ -22,6 +22,9 @@
 
 
 #include "Application.hpp"
+
+#define JTQ_ENG_ACTIVE_LOG_LEVEL JTQ_LOG_LEVEL_WARN
+
 #include "Log.hpp"
 
 namespace JtQ {
@@ -29,10 +32,12 @@ namespace JtQ {
    void Application::run()
    {
       LogManager::init();
-      Logger& JtQLogger = LogManager::getJtQLogger();
-      Logger& appLogger = LogManager::getAppLogger();
 
-      JtQLogger.info("Hello, JtQLogger!");
-      appLogger.warn("Hello, AppLogger!");
+      JTQ_ENG_TRACE("Engine trace");
+      JTQ_ENG_DEBUG("Engine debug");
+      JTQ_ENG_INFO("Engine info");
+      JTQ_ENG_WARN("Engine warn");
+      JTQ_ENG_ERROR("Engine error");
+      JTQ_ENG_CRITICAL("Engine critical");
    }
 }

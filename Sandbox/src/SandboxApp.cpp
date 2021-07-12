@@ -18,16 +18,29 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#define JTQ_APP_ACTIVE_LOG_LEVEL JTQ_LOG_LEVEL_INFO
+
 #include "JetQuark.hpp"
 
 class SandboxApp : public JtQ::Application {
 public:
 
-   SandboxApp()
-   {}
+   SandboxApp() = default;
 
    virtual ~SandboxApp() override
    {}
+
+   virtual void run() override
+   {
+      Application::run();
+
+      JTQ_APP_TRACE("Application trace");
+      JTQ_APP_DEBUG("Application debug");
+      JTQ_APP_INFO("Application info");
+      JTQ_APP_WARN("Application warn");
+      JTQ_APP_ERROR("Application error");
+      JTQ_APP_CRITICAL("Application critical");
+   }
 };
 
 JtQ::Application* JtQ::createApplication()
