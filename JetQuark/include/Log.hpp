@@ -26,6 +26,7 @@
 
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
+#include "spdlog/fmt/ostr.h"
 
 #define JTQ_LOG_LEVEL_TRACE      0
 #define JTQ_LOG_LEVEL_DEBUG      1
