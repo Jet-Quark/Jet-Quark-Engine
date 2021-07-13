@@ -20,11 +20,33 @@
 
 #pragma once
 
-#include "Application.hpp"
+namespace JtQ {
 
-int main(int argc, const char* argv[])
-{
-   JtQ::Application* app = JtQ::createApplication();
-   app->run();
-   delete app;
+   class Application {
+   public:
+
+      /**
+       * Default constructor for Application.
+       */
+      Application() = default;
+
+      /**
+       * Default destructor for Application.
+       * it must be overriden by client application.
+       */
+      virtual ~Application() = default;
+
+      /**
+       * Runs applicaton's code.
+       * TODO: (It's temporary)
+       */
+      virtual void run();
+   };
+
+   /**
+    * Creates an Application and returns a pointer to it.
+    * It must be implemented by the client application.
+    * @return A pointer to the created Application.
+    */
+   Application* createApplication();
 }

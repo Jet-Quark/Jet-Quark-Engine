@@ -20,13 +20,13 @@
 
 #pragma once
 
-/**
- * To be included by the client applicaton.
- */
+// Will be included in the client application.
 
-#include "Log.hpp"
 #include "Application.hpp"
 
-//* Entry point ***************************************************************
-#include "entryPoint.hpp"
-//*****************************************************************************
+int main(int argc, const char* argv[])
+{
+   JtQ::Application* app = JtQ::createApplication();
+   app->run();
+   delete app;
+}

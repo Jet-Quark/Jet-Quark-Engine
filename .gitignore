@@ -1,10 +1,10 @@
-# Executables
-*
-!*.*
-!*/
 
 # Build directory
 build/
+
+# CCLS files
+.ccls-cache/
+compile_commands.json
 
 # Prerequisites
 *.d
